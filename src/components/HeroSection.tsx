@@ -2,13 +2,17 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 const HeroSection = () => {
-  return <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
-    background: 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)',
-    '@media (max-width: 768px)': {
-      background: 'radial-gradient(circle at 95% 80%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
-    }
-  }}>
+  return (
+    <div 
+      className="min-h-screen relative overflow-hidden flex items-center justify-center"
+      style={{
+        background: window.innerWidth <= 768 
+          ? 'radial-gradient(circle at 95% 85%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+          : 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+      }}
+    >
       <div className="container mx-auto px-6 py-12 lg:py-20 pt-24 lg:pt-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -79,6 +83,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default HeroSection;

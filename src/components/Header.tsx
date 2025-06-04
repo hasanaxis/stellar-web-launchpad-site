@@ -1,14 +1,23 @@
+
 import React from 'react';
+
 const Header = () => {
-  return <header className="absolute top-0 left-0 right-0 z-10 p-6">
+  return (
+    <header className="absolute top-0 left-0 right-0 z-10 p-6">
       <div className="container mx-auto px-0">
         <div className="flex items-center">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/lovable-uploads/a96fd7d7-3882-4af6-9de6-21bd8b1de82d.png" alt="Axis Imaging" className="h-12 w-auto" />
+            <img 
+              src="/lovable-uploads/a96fd7d7-3882-4af6-9de6-21bd8b1de82d.png" 
+              alt="Axis Imaging" 
+              className="h-8 w-auto sm:h-12 lg:h-16" 
+            />
           </div>
         </div>
       </div>
-    </header>;
+    </header>
+  );
 };
+
 export default Header;
