@@ -52,11 +52,11 @@ const HeroSection = () => {
           <div className="relative">
             {/* Main large image */}
             <div className="relative mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="bg-white rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
                 <img 
                   src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png"
                   alt="Medical professional with patient during MRI scan"
-                  className="w-full h-64 object-cover rounded-lg"
+                  className="w-full h-64 object-cover"
                 />
               </div>
             </div>
