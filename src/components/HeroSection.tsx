@@ -60,13 +60,21 @@ const HeroSection = () => {
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.2s'
               }}>
-                  <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-full h-full object-cover rounded-2xl" />
+                  <img 
+                    src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
+                    alt="Medical professional with patient during MRI scan" 
+                    className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+                  />
                 </div>
                 
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.6s'
               }}>
-                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl" src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" />
+                  <img 
+                    alt="Medical imaging equipment" 
+                    className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+                    src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" 
+                  />
                 </div>
               </div>
               
@@ -74,7 +82,11 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{
               animationDelay: '0.4s'
             }}>
-                <img src="/lovable-uploads/02f4dcfa-52ea-44fb-8b38-ec95718fa3d3.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl" />
+                <img 
+                  src="/lovable-uploads/02f4dcfa-52ea-44fb-8b38-ec95718fa3d3.png" 
+                  alt="Medical professional with young patient near imaging equipment" 
+                  className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+                />
               </div>
             </div>
           </div>
