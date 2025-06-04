@@ -1,18 +1,27 @@
+
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 const HeroSection = () => {
-  return <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
-    background: window.innerWidth <= 768 ? 'radial-gradient(circle at 95% 95%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)' : 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
-  }}>
+  return (
+    <div 
+      className="min-h-screen relative overflow-hidden flex items-center justify-center"
+      style={{
+        background: window.innerWidth <= 768 
+          ? 'radial-gradient(circle at 95% 95%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+          : 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+      }}
+    >
       <div className="container mx-auto px-6 py-12 lg:py-20 pt-24 lg:pt-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="space-y-2 animate-fade-in mt-[50px] lg:mt-0">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-3 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm mb-6 py-[5px]">
-              <span className="text-base sm:text-lg max-w-lg\" style={{color: '#232176'">coming soon</span>
+            <div className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm mb-6">
+              <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium text-sm sm:text-base">coming soon</span>
             </div>
             
             {/* Main heading */}
@@ -33,9 +42,9 @@ const HeroSection = () => {
             </div>
             
             {/* Subtitle */}
-            <p style={{
+            <p className="text-base sm:text-lg max-w-lg mt-8" style={{
             color: '#3C4247'
-          }} className="text-base sm:text-lg max-w-lg mt-8 mb-6">
+          }}>
               Be the first to know when we are open
             </p>
             
@@ -76,6 +85,9 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default HeroSection;
+
