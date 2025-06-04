@@ -20,19 +20,19 @@ const HeroSection = () => {
             
             {/* Main heading */}
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#3C4247' }}>
                 World class medical imaging, coming to
               </h1>
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
                   Mickleham's
                 </span>{' '}
-                <span className="text-gray-800">doorsteps</span>
+                <span style={{ color: '#3C4247' }}>doorsteps</span>
               </h1>
             </div>
             
             {/* Subtitle */}
-            <p className="text-lg text-gray-600 max-w-lg">
+            <p className="text-lg max-w-lg" style={{ color: '#3C4247' }}>
               Be the first to know when we are open
             </p>
             
