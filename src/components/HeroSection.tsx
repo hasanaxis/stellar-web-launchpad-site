@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 const HeroSection = () => {
-  return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+  return <div className="min-h-screen bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -34,15 +31,8 @@ const HeroSection = () => {
             
             {/* Email signup */}
             <div className="flex flex-col sm:flex-row gap-4 max-w-md">
-              <Input 
-                type="email" 
-                placeholder="Enter your email"
-                className="flex-1 h-12 text-lg border-2 border-gray-200 focus:border-purple-400"
-              />
-              <Button 
-                size="lg"
-                className="h-12 px-8 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105"
-              >
+              <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-lg border-2 border-gray-200 focus:border-purple-400" />
+              <Button size="lg" className="h-12 px-8 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
@@ -51,47 +41,41 @@ const HeroSection = () => {
           {/* Right content - Medical images */}
           <div className="relative">
             {/* Main large image */}
-            <div className="relative mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="relative mb-6 animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
               <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png"
-                  alt="Medical professional with patient during MRI scan"
-                  className="w-full h-64 object-cover"
-                />
+                <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-250 h-264 object-contain" />
               </div>
             </div>
             
             {/* Two smaller images */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="animate-fade-in" style={{
+              animationDelay: '0.4s'
+            }}>
                 <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <img 
-                    src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png"
-                    alt="Medical professional with young patient near imaging equipment"
-                    className="w-full h-32 object-cover rounded-lg"
-                  />
+                  <img src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-32 object-cover rounded-lg" />
                 </div>
               </div>
               
-              <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <div className="animate-fade-in" style={{
+              animationDelay: '0.6s'
+            }}>
                 <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <img 
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
-                    alt="Medical imaging equipment"
-                    className="w-full h-32 object-cover rounded-lg"
-                  />
+                  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" alt="Medical imaging equipment" className="w-full h-32 object-cover rounded-lg" />
                 </div>
               </div>
             </div>
             
             {/* Floating elements */}
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-purple-200 rounded-full opacity-60 animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-pink-200 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-pink-200 rounded-full opacity-40 animate-pulse" style={{
+            animationDelay: '1s'
+          }}></div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;
