@@ -21,8 +21,10 @@ const HeroSection = () => {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
                 World class medical imaging, coming to
               </h1>
-              <h1 className="text-5xl lg:text-6xl font-bold text-purple-600 leading-tight">
-                Mickleham's{' '}
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
+                  Mickleham's
+                </span>{' '}
                 <span className="text-gray-800">doorsteps</span>
               </h1>
             </div>
