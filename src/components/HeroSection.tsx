@@ -1,9 +1,12 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 const HeroSection = () => {
-  return <div className="min-h-screen bg-white relative overflow-hidden">
+  return (
+    <div className="min-h-screen bg-white relative overflow-hidden flex items-center justify-center">
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -70,6 +73,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default HeroSection;
