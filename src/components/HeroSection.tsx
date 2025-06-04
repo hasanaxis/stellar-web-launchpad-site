@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 const HeroSection = () => {
-  return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+  return <div className="min-h-screen bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -34,15 +31,8 @@ const HeroSection = () => {
             
             {/* Email signup */}
             <div className="flex flex-col sm:flex-row gap-4 max-w-md">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 h-12 text-lg border-2 border-gray-200 focus:border-purple-400" 
-              />
-              <Button 
-                size="lg" 
-                className="h-12 px-8 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105"
-              >
+              <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-lg border-2 border-gray-200 focus:border-purple-400" />
+              <Button size="lg" className="h-12 px-8 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
@@ -54,48 +44,34 @@ const HeroSection = () => {
               {/* Left side - Two images stacked vertically */}
               <div className="flex flex-col gap-4">
                 <div className="animate-fade-in flex-1" style={{
-                  animationDelay: '0.2s'
-                }}>
-                  <img 
-                    src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
-                    alt="Medical professional with patient during MRI scan" 
-                    className="w-full h-full object-cover rounded-2xl" 
-                  />
+                animationDelay: '0.2s'
+              }}>
+                  <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-full h-full object-cover rounded-2xl" />
                 </div>
                 
                 <div className="animate-fade-in flex-1" style={{
-                  animationDelay: '0.6s'
-                }}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" 
-                    alt="Medical imaging equipment" 
-                    className="w-full h-full object-cover rounded-2xl" 
-                  />
+                animationDelay: '0.6s'
+              }}>
+                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl" src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" />
                 </div>
               </div>
               
               {/* Right side - Single image */}
               <div className="animate-fade-in" style={{
-                animationDelay: '0.4s'
-              }}>
-                <img 
-                  src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" 
-                  alt="Medical professional with young patient near imaging equipment" 
-                  className="w-full h-full object-cover rounded-2xl" 
-                />
+              animationDelay: '0.4s'
+            }}>
+                <img src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl" />
               </div>
             </div>
             
             {/* Floating elements */}
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-purple-200 rounded-full opacity-60 animate-pulse"></div>
             <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-pink-200 rounded-full opacity-40 animate-pulse" style={{
-              animationDelay: '1s'
-            }}></div>
+            animationDelay: '1s'
+          }}></div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;
