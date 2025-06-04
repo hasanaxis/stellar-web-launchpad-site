@@ -62,7 +62,7 @@ const HeroSection = () => {
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.6s'
               }}>
-                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" src="/lovable-uploads/c4ffcbee-4dda-47a2-b1a1-e125e853391d.png" />
+                  <img alt="Medical imaging equipment" src="/lovable-uploads/c4ffcbee-4dda-47a2-b1a1-e125e853391d.png" className="w-full h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 object-cover" />
                 </div>
               </div>
               
