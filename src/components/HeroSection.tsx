@@ -17,7 +17,7 @@ const HeroSection = () => {
             
             {/* Main heading */}
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+              <h1 className="text-5xl font-bold leading-tight text-gray-800 lg:text-[3C4247]">
                 World class medical imaging, coming to
               </h1>
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
