@@ -12,7 +12,9 @@ const HeroSection = () => {
           {/* Left content */}
           <div className="space-y-8 animate-fade-in">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full border-2 border-purple-300 bg-white/80 backdrop-blur-sm">
+            <div className="inline-flex items-center px-6 py-3 rounded-full border-2 bg-white/80 backdrop-blur-sm" style={{
+              borderImage: 'linear-gradient(to right, #262262, #B41E8E, #EC008C) 1'
+            }}>
               <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium">coming soon</span>
             </div>
             
