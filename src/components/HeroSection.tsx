@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 const HeroSection = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
-      background: 'radial-gradient(circle at center, #B41E8E 6%, #C757AB 22%, #DA90C7 31%, #FFFFFF 83%)'
+      background: 'radial-gradient(circle at 70% center, #B41E8E 6%, #C757AB 22%, #DA90C7 31%, #FFFFFF 83%)'
     }}>
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
