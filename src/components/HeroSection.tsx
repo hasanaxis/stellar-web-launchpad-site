@@ -74,7 +74,7 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{
               animationDelay: '0.4s'
             }}>
-                <img src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl" />
+                <img src="/lovable-uploads/02f4dcfa-52ea-44fb-8b38-ec95718fa3d3.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl" />
               </div>
             </div>
           </div>
