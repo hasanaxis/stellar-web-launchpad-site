@@ -11,7 +11,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/a96fd7d7-3882-4af6-9de6-21bd8b1de82d.png" 
               alt="Axis Imaging" 
-              className="h-8 w-auto"
+              className="h-16 w-auto"
             />
           </div>
         </div>
