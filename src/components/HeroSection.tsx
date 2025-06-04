@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 const HeroSection = () => {
   return <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
     background: 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)',
@@ -61,7 +59,7 @@ const HeroSection = () => {
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.2s'
               }}>
-                  <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-full h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 object-cover" />
+                  <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-full h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 object-none" />
                 </div>
                 
                 <div className="animate-fade-in flex-1" style={{
@@ -83,5 +81,4 @@ const HeroSection = () => {
       </div>
     </div>;
 };
-
 export default HeroSection;
