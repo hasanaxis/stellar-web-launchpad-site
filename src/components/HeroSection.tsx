@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -53,8 +54,8 @@ const HeroSection = () => {
             <div className="relative mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="bg-white rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop"
-                  alt="Medical professional with patient"
+                  src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png"
+                  alt="Medical professional with patient during MRI scan"
                   className="w-full h-64 object-cover rounded-lg"
                 />
               </div>
@@ -65,8 +66,8 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <img 
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
-                    alt="Medical imaging equipment"
+                    src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png"
+                    alt="Medical professional with young patient near imaging equipment"
                     className="w-full h-32 object-cover rounded-lg"
                   />
                 </div>
@@ -75,8 +76,8 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
                 <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <img 
-                    src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"
-                    alt="Patient consultation"
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
+                    alt="Medical imaging equipment"
                     className="w-full h-32 object-cover rounded-lg"
                   />
                 </div>
