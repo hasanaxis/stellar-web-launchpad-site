@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -6,16 +7,14 @@ import { Input } from "@/components/ui/input";
 const HeroSection = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
-      background: 'radial-gradient(circle at 85% center, #E8A4D8 15%, #F2C7E3 35%, #FFFFFF 60%)'
+      background: 'radial-gradient(circle at 95% center, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
     }}>
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="space-y-8 animate-fade-in">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full border-2 bg-white/80 backdrop-blur-sm" style={{
-              borderImage: 'linear-gradient(to right, #262262, #B41E8E, #EC008C) 1'
-            }}>
+            <div className="inline-flex items-center px-6 py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm">
               <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium">coming soon</span>
             </div>
             
