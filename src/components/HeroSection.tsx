@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,7 @@ const HeroSection = () => {
             </div>
             
             {/* Subtitle */}
-            <p className="text-base sm:text-lg max-w-lg" style={{
+            <p className="text-base sm:text-lg max-w-lg mt-8" style={{
             color: '#3C4247'
           }}>
               Be the first to know when we are open
@@ -89,3 +90,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
