@@ -20,10 +20,10 @@ const HeroSection = () => {
             
             {/* Main heading */}
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-medium leading-tight" style={{ color: '#3C4247' }}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight" style={{ color: '#3C4247' }}>
                 World class medical imaging, coming to
               </h1>
-              <h1 className="text-5xl lg:text-6xl font-medium leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight">
                 <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
                   Mickleham's
                 </span>{' '}
@@ -32,16 +32,16 @@ const HeroSection = () => {
             </div>
             
             {/* Subtitle */}
-            <p className="text-lg max-w-lg" style={{ color: '#3C4247' }}>
+            <p className="text-base sm:text-lg max-w-lg" style={{ color: '#3C4247' }}>
               Be the first to know when we are open
             </p>
             
             {/* Email signup */}
-            <div className="relative max-w-md">
+            <div className="relative max-w-md w-full">
               <Input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="h-12 text-lg border-2 border-gray-200 focus:border-purple-400 pr-16" 
+                className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" 
               />
               <Button 
                 size="icon" 
@@ -53,8 +53,8 @@ const HeroSection = () => {
           </div>
           
           {/* Right content - Medical images */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4 h-96">
+          <div className="relative mt-8 lg:mt-0">
+            <div className="grid grid-cols-2 gap-4 h-80 sm:h-96">
               {/* Left side - Two images stacked vertically */}
               <div className="flex flex-col gap-4">
                 <div className="animate-fade-in flex-1" style={{
