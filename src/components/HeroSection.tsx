@@ -20,10 +20,10 @@ const HeroSection = () => {
             
             {/* Main heading */}
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-normal leading-tight" style={{ color: '#3C4247' }}>
+              <h1 className="text-5xl lg:text-6xl font-medium leading-tight" style={{ color: '#3C4247' }}>
                 World class medical imaging, coming to
               </h1>
-              <h1 className="text-5xl lg:text-6xl font-normal leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-medium leading-tight">
                 <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
                   Mickleham's
                 </span>{' '}
