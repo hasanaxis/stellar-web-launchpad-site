@@ -51,25 +51,14 @@ const HeroSection = () => {
           {/* Right content - Medical images */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-96">
-              {/* Large image on the left */}
-              <div className="animate-fade-in" style={{
-                animationDelay: '0.2s'
-              }}>
-                <img 
-                  src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
-                  alt="Medical professional with patient during MRI scan" 
-                  className="w-full h-full object-cover rounded-2xl" 
-                />
-              </div>
-              
-              {/* Two smaller images stacked on the right */}
+              {/* Left side - Two images stacked vertically */}
               <div className="flex flex-col gap-4">
                 <div className="animate-fade-in flex-1" style={{
-                  animationDelay: '0.4s'
+                  animationDelay: '0.2s'
                 }}>
                   <img 
-                    src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" 
-                    alt="Medical professional with young patient near imaging equipment" 
+                    src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
+                    alt="Medical professional with patient during MRI scan" 
                     className="w-full h-full object-cover rounded-2xl" 
                   />
                 </div>
@@ -83,6 +72,17 @@ const HeroSection = () => {
                     className="w-full h-full object-cover rounded-2xl" 
                   />
                 </div>
+              </div>
+              
+              {/* Right side - Single image */}
+              <div className="animate-fade-in" style={{
+                animationDelay: '0.4s'
+              }}>
+                <img 
+                  src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" 
+                  alt="Medical professional with young patient near imaging equipment" 
+                  className="w-full h-full object-cover rounded-2xl" 
+                />
               </div>
             </div>
             
