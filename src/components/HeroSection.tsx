@@ -24,7 +24,7 @@ const HeroSection = () => {
                 <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
                   Mickleham's
                 </span>{' '}
-                <span className="text-gray-800">doorsteps</span>
+                <span className="text-gray-800 text-[3C4247]">doorsteps</span>
               </h1>
             </div>
             
