@@ -19,7 +19,7 @@ const HeroSection = () => {
             </div>
             
             {/* Main heading */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight" style={{ color: '#3C4247' }}>
                 World class medical imaging, coming to
               </h1>
