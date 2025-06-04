@@ -65,10 +65,8 @@ const HeroSection = () => {
             </div>
             
             {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-purple-200 rounded-full opacity-60 animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-pink-200 rounded-full opacity-40 animate-pulse" style={{
-            animationDelay: '1s'
-          }}></div>
+            
+            
           </div>
         </div>
       </div>
