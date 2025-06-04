@@ -50,41 +50,37 @@ const HeroSection = () => {
           
           {/* Right content - Medical images */}
           <div className="relative">
-            {/* Main large image */}
-            <div className="relative mb-6 animate-fade-in h-80" style={{
-              animationDelay: '0.2s'
-            }}>
-              <div className="h-full">
+            <div className="grid grid-cols-2 gap-4 h-96">
+              {/* Large image on the left */}
+              <div className="animate-fade-in" style={{
+                animationDelay: '0.2s'
+              }}>
                 <img 
                   src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
                   alt="Medical professional with patient during MRI scan" 
-                  className="w-full h-full object-cover rounded-lg" 
+                  className="w-full h-full object-cover rounded-2xl" 
                 />
               </div>
-            </div>
-            
-            {/* Two smaller images */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="animate-fade-in" style={{
-                animationDelay: '0.4s'
-              }}>
-                <div className="">
+              
+              {/* Two smaller images stacked on the right */}
+              <div className="flex flex-col gap-4">
+                <div className="animate-fade-in flex-1" style={{
+                  animationDelay: '0.4s'
+                }}>
                   <img 
                     src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" 
                     alt="Medical professional with young patient near imaging equipment" 
-                    className="w-full h-32 rounded-lg object-cover" 
+                    className="w-full h-full object-cover rounded-2xl" 
                   />
                 </div>
-              </div>
-              
-              <div className="animate-fade-in" style={{
-                animationDelay: '0.6s'
-              }}>
-                <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                
+                <div className="animate-fade-in flex-1" style={{
+                  animationDelay: '0.6s'
+                }}>
                   <img 
                     src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" 
                     alt="Medical imaging equipment" 
-                    className="w-full h-32 object-cover rounded-lg" 
+                    className="w-full h-full object-cover rounded-2xl" 
                   />
                 </div>
               </div>
