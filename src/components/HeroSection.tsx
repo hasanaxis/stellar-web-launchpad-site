@@ -14,7 +14,7 @@ const HeroSection = () => {
           {/* Left content */}
           <div className="space-y-8 animate-fade-in">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-purple-600">
+            <div className="inline-flex items-center px-6 py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm">
               <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium">coming soon</span>
             </div>
             
@@ -66,7 +66,7 @@ const HeroSection = () => {
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.6s'
               }}>
-                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl" src="/lovable-uploads/6e42ece3-cead-4832-a55d-1d894e5539d3.png" />
+                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl" src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" />
                 </div>
               </div>
               
