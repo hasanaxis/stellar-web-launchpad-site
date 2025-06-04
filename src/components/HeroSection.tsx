@@ -37,9 +37,16 @@ const HeroSection = () => {
             </p>
             
             {/* Email signup */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md">
-              <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-lg border-2 border-gray-200 focus:border-purple-400" />
-              <Button size="lg" className="h-12 px-8 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
+            <div className="relative max-w-md">
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="h-12 text-lg border-2 border-gray-200 focus:border-purple-400 pr-16" 
+              />
+              <Button 
+                size="icon" 
+                className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105"
+              >
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
