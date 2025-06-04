@@ -73,7 +73,7 @@ const HeroSection = () => {
                   <img 
                     alt="Medical imaging equipment" 
                     className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
-                    src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" 
+                    src="/lovable-uploads/c4ffcbee-4dda-47a2-b1a1-e125e853391d.png" 
                   />
                 </div>
               </div>
