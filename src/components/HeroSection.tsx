@@ -6,7 +6,9 @@ import { Input } from "@/components/ui/input";
 
 const HeroSection = () => {
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
+      background: 'radial-gradient(circle at center, #B41E8E 6%, #C757AB 22%, #DA90C7 31%, #FFFFFF 83%)'
+    }}>
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -77,10 +79,6 @@ const HeroSection = () => {
                 <img src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl" />
               </div>
             </div>
-            
-            {/* Floating elements */}
-            
-            
           </div>
         </div>
       </div>
