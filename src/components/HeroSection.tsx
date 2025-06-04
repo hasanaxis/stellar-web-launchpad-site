@@ -1,14 +1,11 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 const HeroSection = () => {
-  return (
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
-      background: 'radial-gradient(circle at 95% center, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
-    }}>
+  return <div className="min-h-screen relative overflow-hidden flex items-center justify-center" style={{
+    background: 'radial-gradient(circle at 95% center, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+  }}>
       <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -38,15 +35,8 @@ const HeroSection = () => {
             
             {/* Email signup */}
             <div className="relative max-w-md">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="h-12 text-lg border-2 border-gray-200 focus:border-purple-400 pr-16" 
-              />
-              <Button 
-                size="icon" 
-                className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105"
-              >
+              <Input type="email" placeholder="Enter your email" className="h-12 text-lg border-2 border-gray-200 focus:border-purple-400 pr-16" />
+              <Button size="icon" className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
@@ -60,21 +50,13 @@ const HeroSection = () => {
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.2s'
               }}>
-                  <img 
-                    src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" 
-                    alt="Medical professional with patient during MRI scan" 
-                    className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
-                  />
+                  <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-full h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 object-fill" />
                 </div>
                 
                 <div className="animate-fade-in flex-1" style={{
                 animationDelay: '0.6s'
               }}>
-                  <img 
-                    alt="Medical imaging equipment" 
-                    className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
-                    src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" 
-                  />
+                  <img alt="Medical imaging equipment" className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" src="/lovable-uploads/b5af629a-926f-43a9-840f-49922cce91c4.png" />
                 </div>
               </div>
               
@@ -82,18 +64,12 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{
               animationDelay: '0.4s'
             }}>
-                <img 
-                  src="/lovable-uploads/02f4dcfa-52ea-44fb-8b38-ec95718fa3d3.png" 
-                  alt="Medical professional with young patient near imaging equipment" 
-                  className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
-                />
+                <img src="/lovable-uploads/02f4dcfa-52ea-44fb-8b38-ec95718fa3d3.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-full object-cover rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;
