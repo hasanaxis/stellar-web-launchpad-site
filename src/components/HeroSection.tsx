@@ -13,7 +13,7 @@ const HeroSection = () => {
           <div className="space-y-8 animate-fade-in">
             {/* Coming soon badge */}
             <div className="inline-flex items-center px-6 py-3 rounded-full border-2 border-purple-300 bg-white/80 backdrop-blur-sm">
-              <span className="text-purple-600 font-medium">coming soon</span>
+              <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium">coming soon</span>
             </div>
             
             {/* Main heading */}
