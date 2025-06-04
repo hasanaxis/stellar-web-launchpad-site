@@ -44,7 +44,7 @@ const HeroSection = () => {
             <div className="relative mb-6 animate-fade-in" style={{
             animationDelay: '0.2s'
           }}>
-              <div className="">
+              <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
                 <img src="/lovable-uploads/fc52230e-7547-469f-87a6-4f446ebcec8b.png" alt="Medical professional with patient during MRI scan" className="w-250 h-264 object-contain" />
               </div>
             </div>
@@ -54,7 +54,9 @@ const HeroSection = () => {
               <div className="animate-fade-in" style={{
               animationDelay: '0.4s'
             }}>
-                
+                <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <img src="/lovable-uploads/783d256a-bd50-4545-b7eb-0b7cde529d06.png" alt="Medical professional with young patient near imaging equipment" className="w-full h-32 object-cover rounded-lg" />
+                </div>
               </div>
               
               <div className="animate-fade-in" style={{
