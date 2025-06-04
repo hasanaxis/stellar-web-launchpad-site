@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 py-12 lg:py-20 pt-24 lg:pt-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div className="space-y-2 animate-fade-in" style={{ margin: '25px' }}>
+          <div className="space-y-2 animate-fade-in">
             {/* Coming soon badge */}
             <div className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm">
               <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium text-sm sm:text-base">coming soon</span>
