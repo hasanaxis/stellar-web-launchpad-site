@@ -18,7 +18,7 @@ const HeroSection = () => {
           {/* Left content */}
           <div className="space-y-2 animate-fade-in mt-[50px] lg:mt-0">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm margin-bottom-25px">
+            <div className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm">
               <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium text-sm sm:text-base">coming soon</span>
             </div>
             
