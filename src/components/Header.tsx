@@ -8,12 +8,11 @@ const Header = () => {
         <div className="flex items-center">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="text-3xl font-bold">
-              <span className="text-purple-600">axis</span>
-            </div>
-            <div className="text-sm text-purple-600 font-medium">
-              imaging
-            </div>
+            <img 
+              src="/lovable-uploads/a96fd7d7-3882-4af6-9de6-21bd8b1de82d.png" 
+              alt="Axis Imaging" 
+              className="h-8 w-auto"
+            />
           </div>
         </div>
       </div>
