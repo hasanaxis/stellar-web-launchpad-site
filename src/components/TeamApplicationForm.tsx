@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { X, Upload, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -34,17 +33,9 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
   const totalSteps = 4;
 
   const roles = [
-    'Radiologist',
-    'Radiographer',
-    'Medical Imaging Technologist',
-    'Sonographer',
-    'CT Technologist',
-    'MRI Technologist',
-    'Nuclear Medicine Technologist',
-    'Radiation Therapist',
-    'Medical Physicist',
     'Administrative Staff',
-    'Other'
+    'Radiographer',
+    'Sonographer'
   ];
 
   const handleInputChange = (field: string, value: string) => {
