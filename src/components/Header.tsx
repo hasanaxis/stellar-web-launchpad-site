@@ -26,24 +26,14 @@ const Header = () => {
             {/* Navigation */}
             <div className="flex items-center space-x-4">
               {!user ? (
-                <>
-                  <Button
-                    variant="outline"
-                    className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
-                    style={{ borderColor: '#EC008C', color: '#EC008C' }}
-                    onClick={() => setShowTeamForm(true)}
-                  >
-                    Join Our Team
-                  </Button>
-                  <Link to="/auth">
-                    <Button
-                      variant="outline"
-                      className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
-                    >
-                      Admin Login
-                    </Button>
-                  </Link>
-                </>
+                <Button
+                  variant="outline"
+                  className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
+                  style={{ borderColor: '#EC008C', color: '#EC008C' }}
+                  onClick={() => setShowTeamForm(true)}
+                >
+                  Join Our Team
+                </Button>
               ) : (
                 <div className="flex items-center space-x-4">
                   {isAdmin && (
