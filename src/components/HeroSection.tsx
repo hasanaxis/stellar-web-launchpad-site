@@ -26,7 +26,9 @@ const HeroSection = () => {
     <div 
       className="min-h-screen relative overflow-hidden flex items-center justify-center"
       style={{
-        background: 'linear-gradient(135deg, #7C3AED 0%, #A855F7 25%, #EC4899 50%, #F472B6 75%, #FBBF24 100%)'
+        background: window.innerWidth <= 768 
+          ? 'radial-gradient(circle at 95% 95%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
+          : 'radial-gradient(circle at 95% 70%, #E8A4D8 8%, #F2C7E3 20%, #FFFFFF 45%)'
       }}
     >
       <div className="container mx-auto px-6 py-12 lg:py-20 pt-24 lg:pt-32">
@@ -34,27 +36,32 @@ const HeroSection = () => {
           {/* Left content */}
           <div className="space-y-2 animate-fade-in mt-[50px] lg:mt-0">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm mb-6 shadow-sm">
-              <span className="font-medium text-sm sm:text-base text-white">
+            <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-[#232176] bg-white/90 backdrop-blur-sm mb-6 shadow-sm">
+              <span className="font-medium text-sm sm:text-base" style={{ color: '#232176' }}>
                 coming soon
               </span>
             </div>
             
             {/* Main heading */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight text-white">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight" style={{
+              color: '#3C4247'
+            }}>
                 Bringing world class medical imaging to
               </h1>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight">
-                <span className="text-white">
+                <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
                   Mickleham's
                 </span>{' '}
-                <span className="text-white">doorsteps</span>
+                <span style={{
+                color: '#3C4247'
+              }}>doorsteps</span>
               </h1>
             </div>
             
             {/* Subtitle */}
-            <p className="text-base sm:text-lg max-w-lg text-white/90" style={{
+            <p className="text-base sm:text-lg max-w-lg" style={{
+            color: '#3C4247',
             marginTop: '24px'
           }}>
               Be the first to know when we are open
@@ -69,14 +76,14 @@ const HeroSection = () => {
                 placeholder="Enter your email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 text-base sm:text-lg border-2 border-white/30 bg-white/20 backdrop-blur-sm focus:border-white/50 pr-16 w-full text-white placeholder:text-white/70" 
+                className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" 
                 required
               />
               <Button 
                 type="submit"
                 size="icon" 
                 disabled={isLoading || !email}
-                className="absolute right-1 top-1 h-10 w-10 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 backdrop-blur-sm"
+                className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
               >
                 <ArrowRight className="w-5 h-5" />
               </Button>
