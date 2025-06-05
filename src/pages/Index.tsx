@@ -1,6 +1,6 @@
 
 import Header from "@/components/Header";
-import { HeroSection } from "@/components/HeroSection";
+import HeroSection from "@/components/HeroSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Eye } from "lucide-react";
