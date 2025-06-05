@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,7 @@ const HeroSection = () => {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight" style={{
               color: '#3C4247'
             }}>
-                World class medical imaging, coming to
+                Bringing world class medical imaging to
               </h1>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight">
                 <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent">
@@ -87,8 +88,6 @@ const HeroSection = () => {
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </form>
-
-            {/* Remove team link section - it's now in the header */}
           </div>
           
           {/* Right content - Medical images */}
