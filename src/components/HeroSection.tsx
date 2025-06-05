@@ -49,7 +49,9 @@ const HeroSection = () => {
             </p>
             
             {/* Email signup */}
-            <div className="relative max-w-md w-full mt-4">
+            <div className="relative max-w-md w-full mt-4" style={{
+              marginTop: '8px'
+            }}>
               <Input type="email" placeholder="Enter your email" className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" />
               <Button size="icon" className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
                 <ArrowRight className="w-5 h-5" />
