@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X, Upload, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -121,20 +122,33 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
               Step {currentStep} of {totalSteps}
             </p>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              className="text-sm px-4 py-2"
+              style={{ borderColor: '#EC008C', color: '#EC008C' }}
+              onClick={() => {/* This could trigger some action or just be decorative */}}
+            >
+              Join Our Team
+            </Button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Progress Bar */}
         <div className="px-6 py-3">
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
-              className="bg-[#232176] h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+              className="h-2 rounded-full transition-all duration-300"
+              style={{ 
+                width: `${(currentStep / totalSteps) * 100}%`,
+                backgroundColor: '#EC008C'
+              }}
             />
           </div>
         </div>
