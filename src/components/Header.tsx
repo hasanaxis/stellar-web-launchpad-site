@@ -1,10 +1,13 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { TeamApplicationForm } from './TeamApplicationForm';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Header = () => {
   const [showTeamForm, setShowTeamForm] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <>
@@ -20,15 +23,49 @@ const Header = () => {
               />
             </div>
             
-            {/* Join Our Team Button */}
-            <Button
-              variant="outline"
-              className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
-              style={{ borderColor: '#EC008C', color: '#EC008C' }}
-              onClick={() => setShowTeamForm(true)}
-            >
-              Join Our Team
-            </Button>
+            {/* Navigation */}
+            <div className="flex items-center space-x-4">
+              {!user ? (
+                <>
+                  <Button
+                    variant="outline"
+                    className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
+                    style={{ borderColor: '#EC008C', color: '#EC008C' }}
+                    onClick={() => setShowTeamForm(true)}
+                  >
+                    Join Our Team
+                  </Button>
+                  <Link to="/auth">
+                    <Button
+                      variant="outline"
+                      className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
+                    >
+                      Admin Login
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  {isAdmin && (
+                    <Link to="/applications">
+                      <Button
+                        variant="outline"
+                        className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
+                      >
+                        View Applications
+                      </Button>
+                    </Link>
+                  )}
+                  <Button
+                    variant="outline"
+                    className="text-sm px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white"
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>

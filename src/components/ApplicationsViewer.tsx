@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Download, Eye, Calendar, User, Mail, Phone, Briefcase } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface JobApplication {
   id: string;
@@ -28,12 +28,24 @@ export const ApplicationsViewer = () => {
   const [loading, setLoading] = useState(true);
   const [selectedApplication, setSelectedApplication] = useState<JobApplication | null>(null);
   const { toast } = useToast();
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
-    fetchApplications();
-  }, []);
+    if (isAdmin) {
+      fetchApplications();
+    }
+  }, [isAdmin]);
 
   const fetchApplications = async () => {
+    if (!isAdmin) {
+      toast({
+        title: "Access Denied",
+        description: "You don't have permission to view applications.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('job_applications')
@@ -68,6 +80,15 @@ export const ApplicationsViewer = () => {
       toast({
         title: "No resume available",
         description: "This application doesn't have a resume attached.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!isAdmin) {
+      toast({
+        title: "Access Denied",
+        description: "You don't have permission to download resumes.",
         variant: "destructive",
       });
       return;
@@ -108,6 +129,17 @@ export const ApplicationsViewer = () => {
       minute: '2-digit'
     });
   };
+
+  if (!isAdmin) {
+    return (
+      <div className="container mx-auto p-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+          <p className="text-gray-600">You don't have permission to view this page.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
