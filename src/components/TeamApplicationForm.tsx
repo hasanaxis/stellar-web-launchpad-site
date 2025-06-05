@@ -116,7 +116,7 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900">Join Our Team</h2>
+            <h2 className="text-2xl font-medium" style={{ color: '#EC008C' }}>Join Our Team</h2>
             <p className="text-sm text-gray-600 mt-1">
               Step {currentStep} of {totalSteps}
             </p>
