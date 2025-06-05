@@ -36,8 +36,10 @@ const HeroSection = () => {
           {/* Left content */}
           <div className="space-y-2 animate-fade-in mt-[50px] lg:mt-0">
             {/* Coming soon badge */}
-            <div className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full border-2 border-purple-600 bg-white/80 backdrop-blur-sm mb-6">
-              <span className="bg-gradient-to-r from-[#262262] via-[#B41E8E] to-[#EC008C] bg-clip-text text-transparent font-medium text-sm sm:text-base">coming soon</span>
+            <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-[#232176] bg-white/90 backdrop-blur-sm mb-6 shadow-sm">
+              <span className="font-medium text-sm sm:text-base" style={{ color: '#232176' }}>
+                coming soon
+              </span>
             </div>
             
             {/* Main heading */}
