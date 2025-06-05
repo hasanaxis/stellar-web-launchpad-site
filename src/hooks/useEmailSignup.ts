@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { validateEmail, sanitizeInput } from '@/utils/validation';
 
 export const useEmailSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,9 +12,21 @@ export const useEmailSignup = () => {
     setIsLoading(true);
     
     try {
+      // Validate and sanitize email
+      const sanitizedEmail = sanitizeInput(email).toLowerCase();
+      
+      if (!validateEmail(sanitizedEmail)) {
+        toast({
+          title: "Invalid email",
+          description: "Please enter a valid email address.",
+          variant: "destructive",
+        });
+        return { success: false };
+      }
+
       const { error } = await supabase
         .from('email_signups')
-        .insert([{ email }]);
+        .insert([{ email: sanitizedEmail }]);
 
       if (error) {
         if (error.code === '23505') { // Unique constraint violation

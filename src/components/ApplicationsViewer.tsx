@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Download, Calendar, User, Mail, Phone, Briefcase } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
+import { getSecureResumeUrl } from '@/utils/secureStorage';
 
 interface JobApplication {
   id: string;
@@ -33,8 +33,12 @@ export const ApplicationsViewer = () => {
   const { user, isAdmin } = useAuth();
 
   useEffect(() => {
-    fetchApplications();
-  }, []);
+    if (user && isAdmin) {
+      fetchApplications();
+    } else {
+      setLoading(false);
+    }
+  }, [user, isAdmin]);
 
   const fetchApplications = async () => {
     try {
@@ -45,14 +49,6 @@ export const ApplicationsViewer = () => {
 
       if (error) {
         console.error('Error fetching applications:', error);
-        if (!user) {
-          toast({
-            title: "Authentication Required",
-            description: "Please sign in to view applications.",
-            variant: "destructive",
-          });
-          return;
-        }
         toast({
           title: "Error loading applications",
           description: "Failed to load job applications. Please try again.",
@@ -94,16 +90,25 @@ export const ApplicationsViewer = () => {
     }
 
     try {
-      const response = await fetch(application.resume_url);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+      // Get secure signed URL for download
+      const secureUrl = await getSecureResumeUrl(application.resume_url);
+      
+      if (!secureUrl) {
+        toast({
+          title: "Download failed",
+          description: "Unable to generate secure download link.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Create download link
       const link = document.createElement('a');
-      link.href = url;
+      link.href = secureUrl;
       link.download = application.resume_filename || `${application.first_name}_${application.last_name}_resume.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
 
       toast({
         title: "Resume downloaded",
@@ -143,9 +148,17 @@ export const ApplicationsViewer = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Authentication Required</h1>
           <p className="text-gray-600">Please sign in to view applications.</p>
-          <Button className="mt-4" onClick={() => window.location.href = '/auth'}>
-            Sign In
-          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="container mx-auto p-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+          <p className="text-gray-600">You don't have permission to view applications.</p>
         </div>
       </div>
     );
@@ -221,7 +234,7 @@ export const ApplicationsViewer = () => {
                         >
                           View
                         </Button>
-                        {application.resume_url && isAdmin && (
+                        {application.resume_url && (
                           <Button
                             variant="outline"
                             size="sm"

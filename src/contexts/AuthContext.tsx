@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { validatePassword } from '@/utils/validation';
 
 interface AuthContextType {
   user: User | null;
@@ -68,24 +69,60 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signUp = async (email: string, password: string) => {
+    // Validate password strength
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      return { 
+        error: { 
+          message: passwordValidation.errors.join('. ') 
+        } 
+      };
+    }
+
     const redirectUrl = `${window.location.origin}/`;
     
     const { error } = await supabase.auth.signUp({
-      email,
+      email: email.trim().toLowerCase(),
       password,
       options: {
         emailRedirectTo: redirectUrl
       }
     });
-    return { error };
+
+    // Sanitize error messages
+    if (error) {
+      let sanitizedMessage = 'An error occurred during sign up.';
+      if (error.message.includes('already registered')) {
+        sanitizedMessage = 'An account with this email already exists.';
+      } else if (error.message.includes('weak password')) {
+        sanitizedMessage = 'Password does not meet security requirements.';
+      } else if (error.message.includes('invalid email')) {
+        sanitizedMessage = 'Please enter a valid email address.';
+      }
+      return { error: { message: sanitizedMessage } };
+    }
+
+    return { error: null };
   };
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({
-      email,
+      email: email.trim().toLowerCase(),
       password
     });
-    return { error };
+
+    // Sanitize error messages
+    if (error) {
+      let sanitizedMessage = 'Sign in failed. Please check your credentials.';
+      if (error.message.includes('Invalid login credentials')) {
+        sanitizedMessage = 'Invalid email or password.';
+      } else if (error.message.includes('Email not confirmed')) {
+        sanitizedMessage = 'Please check your email and confirm your account.';
+      }
+      return { error: { message: sanitizedMessage } };
+    }
+
+    return { error: null };
   };
 
   const signOut = async () => {
