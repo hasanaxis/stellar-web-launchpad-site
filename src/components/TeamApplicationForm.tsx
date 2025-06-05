@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X, Upload, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface TeamApplicationFormProps {
   isOpen: boolean;
@@ -57,23 +59,109 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
     }
   };
 
+  const uploadResume = async (file: File): Promise<{ url: string; filename: string } | null> => {
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = fileName;
+
+      const { error: uploadError } = await supabase.storage
+        .from('resumes')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Error uploading file:', uploadError);
+        return null;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('resumes')
+        .getPublicUrl(filePath);
+
+      return { url: publicUrl, filename: file.name };
+    } catch (error) {
+      console.error('Error in uploadResume:', error);
+      return null;
+    }
+  };
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      let resumeUrl = null;
+      let resumeFilename = null;
+
+      // Upload resume if provided
+      if (formData.resume) {
+        const uploadResult = await uploadResume(formData.resume);
+        if (uploadResult) {
+          resumeUrl = uploadResult.url;
+          resumeFilename = uploadResult.filename;
+        } else {
+          toast({
+            title: "Resume upload failed",
+            description: "There was an error uploading your resume. Please try again.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
+      // Insert application data into database
+      const { error } = await supabase
+        .from('job_applications')
+        .insert({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          role: formData.role,
+          experience: formData.experience,
+          qualifications: formData.qualifications,
+          availability: formData.availability,
+          additional_info: formData.additionalInfo || null,
+          resume_url: resumeUrl,
+          resume_filename: resumeFilename
+        });
+
+      if (error) {
+        console.error('Error submitting application:', error);
+        toast({
+          title: "Submission failed",
+          description: "There was an error submitting your application. Please try again.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       toast({
         title: "Application submitted!",
         description: "Thank you for your interest. We'll be in touch soon.",
       });
       
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        role: '',
+        experience: '',
+        qualifications: '',
+        availability: '',
+        additionalInfo: '',
+        resume: null
+      });
+      setCurrentStep(1);
       onClose();
     } catch (error) {
+      console.error('Unexpected error:', error);
       toast({
         title: "Submission failed",
-        description: "Please try again later.",
+        description: "An unexpected error occurred. Please try again later.",
         variant: "destructive",
       });
     } finally {
