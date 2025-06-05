@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
-import { Download, Eye, Calendar, User, Mail, Phone, Briefcase } from 'lucide-react';
+import { Download, Calendar, User, Mail, Phone, Briefcase } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
@@ -28,24 +30,13 @@ export const ApplicationsViewer = () => {
   const [loading, setLoading] = useState(true);
   const [selectedApplication, setSelectedApplication] = useState<JobApplication | null>(null);
   const { toast } = useToast();
-  const { isAdmin } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   useEffect(() => {
-    if (isAdmin) {
-      fetchApplications();
-    }
-  }, [isAdmin]);
+    fetchApplications();
+  }, []);
 
   const fetchApplications = async () => {
-    if (!isAdmin) {
-      toast({
-        title: "Access Denied",
-        description: "You don't have permission to view applications.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     try {
       const { data, error } = await supabase
         .from('job_applications')
@@ -54,6 +45,14 @@ export const ApplicationsViewer = () => {
 
       if (error) {
         console.error('Error fetching applications:', error);
+        if (!user) {
+          toast({
+            title: "Authentication Required",
+            description: "Please sign in to view applications.",
+            variant: "destructive",
+          });
+          return;
+        }
         toast({
           title: "Error loading applications",
           description: "Failed to load job applications. Please try again.",
@@ -123,23 +122,12 @@ export const ApplicationsViewer = () => {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
     });
   };
-
-  if (!isAdmin) {
-    return (
-      <div className="container mx-auto p-6">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
-          <p className="text-gray-600">You don't have permission to view this page.</p>
-        </div>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -149,11 +137,25 @@ export const ApplicationsViewer = () => {
     );
   }
 
+  if (!user) {
+    return (
+      <div className="container mx-auto p-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Authentication Required</h1>
+          <p className="text-gray-600">Please sign in to view applications.</p>
+          <Button className="mt-4" onClick={() => window.location.href = '/auth'}>
+            Sign In
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Job Applications</h1>
-        <p className="text-gray-600">Manage and review submitted job applications</p>
+        <p className="text-gray-600">Review submitted job applications</p>
       </div>
 
       {applications.length === 0 ? (
@@ -165,87 +167,77 @@ export const ApplicationsViewer = () => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6">
-          {applications.map((application) => (
-            <Card key={application.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-xl">
+        <Card>
+          <CardHeader>
+            <CardTitle>Applications ({applications.length})</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Experience</TableHead>
+                  <TableHead>Applied</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {applications.map((application) => (
+                  <TableRow key={application.id}>
+                    <TableCell className="font-medium">
                       {application.first_name} {application.last_name}
-                    </CardTitle>
-                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                    </TableCell>
+                    <TableCell>
                       <div className="flex items-center gap-1">
-                        <Mail className="w-4 h-4" />
+                        <Mail className="w-4 h-4 text-gray-400" />
                         {application.email}
                       </div>
+                    </TableCell>
+                    <TableCell>
                       <div className="flex items-center gap-1">
-                        <Phone className="w-4 h-4" />
+                        <Phone className="w-4 h-4 text-gray-400" />
                         {application.phone}
                       </div>
-                      <div className="flex items-center gap-1">
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary">{application.role}</Badge>
+                    </TableCell>
+                    <TableCell>{application.experience}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1 text-sm text-gray-600">
                         <Calendar className="w-4 h-4" />
                         {formatDate(application.created_at)}
                       </div>
-                    </div>
-                  </div>
-                  <Badge variant="secondary" className="ml-4">
-                    {application.role}
-                  </Badge>
-                </div>
-              </CardHeader>
-              
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-1">Experience</h4>
-                    <p className="text-gray-600">{application.experience}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-1">Availability</h4>
-                    <p className="text-gray-600">{application.availability}</p>
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <h4 className="font-medium text-gray-900 mb-1">Qualifications</h4>
-                  <p className="text-gray-600 text-sm">{application.qualifications}</p>
-                </div>
-                
-                {application.additional_info && (
-                  <div className="mb-4">
-                    <h4 className="font-medium text-gray-900 mb-1">Additional Information</h4>
-                    <p className="text-gray-600 text-sm">{application.additional_info}</p>
-                  </div>
-                )}
-                
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSelectedApplication(application)}
-                    className="flex items-center gap-1"
-                  >
-                    <Eye className="w-4 h-4" />
-                    View Details
-                  </Button>
-                  
-                  {application.resume_url && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => downloadResume(application)}
-                      className="flex items-center gap-1"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download Resume
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setSelectedApplication(application)}
+                        >
+                          View
+                        </Button>
+                        {application.resume_url && isAdmin && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => downloadResume(application)}
+                          >
+                            <Download className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
       )}
 
       {/* Detailed View Modal */}
@@ -260,7 +252,7 @@ export const ApplicationsViewer = () => {
                 onClick={() => setSelectedApplication(null)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
               >
-                <Eye className="w-5 h-5" />
+                ✕
               </button>
             </div>
             
@@ -306,10 +298,14 @@ export const ApplicationsViewer = () => {
                       <Button
                         onClick={() => downloadResume(selectedApplication)}
                         className="flex items-center gap-2"
+                        disabled={!isAdmin}
                       >
                         <Download className="w-4 h-4" />
                         Download {selectedApplication.resume_filename || 'Resume'}
                       </Button>
+                      {!isAdmin && (
+                        <p className="text-xs text-gray-500 mt-1">Admin access required to download</p>
+                      )}
                     </div>
                   )}
                 </div>
