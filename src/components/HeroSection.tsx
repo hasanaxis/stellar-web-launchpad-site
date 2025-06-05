@@ -1,10 +1,27 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useEmailSignup } from '@/hooks/useEmailSignup';
 
 const HeroSection = () => {
+  const [email, setEmail] = useState('');
+  const { signupEmail, isLoading } = useEmailSignup();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      return;
+    }
+
+    const result = await signupEmail(email);
+    if (result.success) {
+      setEmail(''); // Clear the input on success
+    }
+  };
+
   return (
     <div 
       className="min-h-screen relative overflow-hidden flex items-center justify-center"
@@ -49,14 +66,26 @@ const HeroSection = () => {
             </p>
             
             {/* Email signup */}
-            <div className="relative max-w-md w-full mt-4" style={{
+            <form onSubmit={handleSubmit} className="relative max-w-md w-full mt-4" style={{
               marginTop: '8px'
             }}>
-              <Input type="email" placeholder="Enter your email" className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" />
-              <Button size="icon" className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" 
+                required
+              />
+              <Button 
+                type="submit"
+                size="icon" 
+                disabled={isLoading || !email}
+                className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+              >
                 <ArrowRight className="w-5 h-5" />
               </Button>
-            </div>
+            </form>
           </div>
           
           {/* Right content - Medical images */}
