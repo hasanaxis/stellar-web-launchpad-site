@@ -43,7 +43,7 @@ const HeroSection = () => {
             
             {/* Subtitle */}
             <p className="text-base sm:text-lg max-w-lg mt-8" style={{
-            color: '#3C4247'
+            color: rgb(60, 66, 71);margin-top: 30px;
           }}>
               Be the first to know when we are open
             </p>
