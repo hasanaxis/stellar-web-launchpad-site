@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -40,15 +41,16 @@ const HeroSection = () => {
             </div>
             
             {/* Subtitle */}
-            <p className="text-base sm:text-lg max-w-lg mt-[24px]" style={{
-            color: '#3C4247'
+            <p className="text-base sm:text-lg max-w-lg" style={{
+            color: '#3C4247',
+            marginTop: '24px'
           }}>
               Be the first to know when we are open
             </p>
             
             {/* Email signup */}
-            <div className="relative max-w-md w-full">
-              <Input type="email" placeholder="Enter your email" className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full mt-4" />
+            <div className="relative max-w-md w-full mt-4">
+              <Input type="email" placeholder="Enter your email" className="h-12 text-base sm:text-lg border-2 border-gray-200 focus:border-purple-400 pr-16 w-full" />
               <Button size="icon" className="absolute right-1 top-1 h-10 w-10 bg-blue-900 hover:bg-blue-800 text-white rounded-full transition-all duration-200 hover:scale-105">
                 <ArrowRight className="w-5 h-5" />
               </Button>
