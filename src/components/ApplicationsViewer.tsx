@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Download, Calendar, User, Mail, Phone, Briefcase } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -90,22 +91,29 @@ export const ApplicationsViewer = () => {
     }
 
     try {
+      console.log('Downloading resume for application:', application.id);
+      console.log('Resume path:', application.resume_url);
+      
       // Get secure signed URL for download
       const secureUrl = await getSecureResumeUrl(application.resume_url);
       
       if (!secureUrl) {
+        console.error('Failed to generate signed URL for path:', application.resume_url);
         toast({
           title: "Download failed",
-          description: "Unable to generate secure download link.",
+          description: "Unable to generate secure download link. Please check if the file exists.",
           variant: "destructive",
         });
         return;
       }
 
+      console.log('Generated signed URL, starting download');
+
       // Create download link
       const link = document.createElement('a');
       link.href = secureUrl;
       link.download = application.resume_filename || `${application.first_name}_${application.last_name}_resume.pdf`;
+      link.target = '_blank'; // Open in new tab as fallback
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

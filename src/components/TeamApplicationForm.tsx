@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { uploadResumeSecurely } from '@/utils/secureStorage';
 
 interface TeamApplicationFormProps {
   isOpen: boolean;
@@ -59,32 +60,6 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
     }
   };
 
-  const uploadResume = async (file: File): Promise<{ url: string; filename: string } | null> => {
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = fileName;
-
-      const { error: uploadError } = await supabase.storage
-        .from('resumes')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        console.error('Error uploading file:', uploadError);
-        return null;
-      }
-
-      const { data: { publicUrl } } = supabase.storage
-        .from('resumes')
-        .getPublicUrl(filePath);
-
-      return { url: publicUrl, filename: file.name };
-    } catch (error) {
-      console.error('Error in uploadResume:', error);
-      return null;
-    }
-  };
-
   const handleSubmit = async () => {
     setIsSubmitting(true);
     
@@ -92,25 +67,8 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
       let resumeUrl = null;
       let resumeFilename = null;
 
-      // Upload resume if provided
-      if (formData.resume) {
-        const uploadResult = await uploadResume(formData.resume);
-        if (uploadResult) {
-          resumeUrl = uploadResult.url;
-          resumeFilename = uploadResult.filename;
-        } else {
-          toast({
-            title: "Resume upload failed",
-            description: "There was an error uploading your resume. Please try again.",
-            variant: "destructive",
-          });
-          setIsSubmitting(false);
-          return;
-        }
-      }
-
-      // Insert application data into database
-      const { error } = await supabase
+      // Create application record first to get an ID
+      const { data: applicationData, error: insertError } = await supabase
         .from('job_applications')
         .insert({
           first_name: formData.firstName,
@@ -122,19 +80,61 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
           qualifications: formData.qualifications,
           availability: formData.availability,
           additional_info: formData.additionalInfo || null,
-          resume_url: resumeUrl,
-          resume_filename: resumeFilename
-        });
+          resume_url: null,
+          resume_filename: null
+        })
+        .select()
+        .single();
 
-      if (error) {
-        console.error('Error submitting application:', error);
+      if (insertError) {
+        console.error('Error creating application:', insertError);
         toast({
           title: "Submission failed",
-          description: "There was an error submitting your application. Please try again.",
+          description: "There was an error creating your application. Please try again.",
           variant: "destructive",
         });
         setIsSubmitting(false);
         return;
+      }
+
+      // Upload resume if provided using secure storage
+      if (formData.resume) {
+        console.log('Uploading resume for application:', applicationData.id);
+        const uploadResult = await uploadResumeSecurely(formData.resume, applicationData.id);
+        
+        if (uploadResult.error) {
+          console.error('Resume upload failed:', uploadResult.error);
+          toast({
+            title: "Resume upload failed",
+            description: uploadResult.error,
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+          return;
+        }
+
+        resumeUrl = uploadResult.url;
+        resumeFilename = uploadResult.filename;
+
+        // Update application with resume information
+        const { error: updateError } = await supabase
+          .from('job_applications')
+          .update({
+            resume_url: resumeUrl,
+            resume_filename: resumeFilename
+          })
+          .eq('id', applicationData.id);
+
+        if (updateError) {
+          console.error('Error updating application with resume:', updateError);
+          toast({
+            title: "Update failed",
+            description: "Resume uploaded but failed to link to application. Please contact support.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+          return;
+        }
       }
 
       toast({
