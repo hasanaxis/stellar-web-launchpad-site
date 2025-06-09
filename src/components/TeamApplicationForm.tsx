@@ -63,72 +63,38 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
     setIsSubmitting(true);
     
     try {
-      console.log('Starting application submission...');
-      console.log('Form data:', {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        role: formData.role,
-        experience: formData.experience,
-        qualifications: formData.qualifications,
-        availability: formData.availability,
-        additionalInfo: formData.additionalInfo,
-        hasResume: !!formData.resume
-      });
-
-      // Check current user status
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
-      console.log('Current user:', user ? 'authenticated' : 'anonymous');
-      if (authError) {
-        console.log('Auth error:', authError);
-      }
-
-      // Try to insert the application data first
-      console.log('Attempting to insert application...');
-      const insertData = {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        role: formData.role,
-        experience: formData.experience,
-        qualifications: formData.qualifications,
-        availability: formData.availability,
-        additional_info: formData.additionalInfo || null,
-        resume_url: null,
-        resume_filename: null
-      };
-      
-      console.log('Insert data:', insertData);
-
+      // Create application record first
       const { data: applicationData, error: insertError } = await supabase
         .from('job_applications')
-        .insert(insertData)
+        .insert({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          role: formData.role,
+          experience: formData.experience,
+          qualifications: formData.qualifications,
+          availability: formData.availability,
+          additional_info: formData.additionalInfo || null,
+          resume_url: null,
+          resume_filename: null
+        })
         .select()
         .single();
 
       if (insertError) {
-        console.error('Detailed insert error:', insertError);
-        console.error('Error code:', insertError.code);
-        console.error('Error details:', insertError.details);
-        console.error('Error hint:', insertError.hint);
-        console.error('Error message:', insertError.message);
-        
+        console.error('Error creating application:', insertError);
         toast({
           title: "Submission failed",
-          description: `Database error: ${insertError.message}. Please try again or contact support.`,
+          description: "There was an error creating your application. Please try again.",
           variant: "destructive",
         });
         setIsSubmitting(false);
         return;
       }
 
-      console.log('Application created successfully:', applicationData);
-
       // Upload resume if provided using secure storage
       if (formData.resume) {
-        console.log('Uploading resume for application:', applicationData.id);
         const uploadResult = await uploadResumeSecurely(formData.resume, applicationData.id);
         
         if (uploadResult.error) {
