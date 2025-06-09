@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { X, Upload, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -64,38 +63,68 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
     setIsSubmitting(true);
     
     try {
-      let resumeUrl = null;
-      let resumeFilename = null;
+      console.log('Starting application submission...');
+      console.log('Form data:', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        role: formData.role,
+        experience: formData.experience,
+        qualifications: formData.qualifications,
+        availability: formData.availability,
+        additionalInfo: formData.additionalInfo,
+        hasResume: !!formData.resume
+      });
 
-      // Create application record first to get an ID
+      // Check current user status
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      console.log('Current user:', user ? 'authenticated' : 'anonymous');
+      if (authError) {
+        console.log('Auth error:', authError);
+      }
+
+      // Try to insert the application data first
+      console.log('Attempting to insert application...');
+      const insertData = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        role: formData.role,
+        experience: formData.experience,
+        qualifications: formData.qualifications,
+        availability: formData.availability,
+        additional_info: formData.additionalInfo || null,
+        resume_url: null,
+        resume_filename: null
+      };
+      
+      console.log('Insert data:', insertData);
+
       const { data: applicationData, error: insertError } = await supabase
         .from('job_applications')
-        .insert({
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          role: formData.role,
-          experience: formData.experience,
-          qualifications: formData.qualifications,
-          availability: formData.availability,
-          additional_info: formData.additionalInfo || null,
-          resume_url: null,
-          resume_filename: null
-        })
+        .insert(insertData)
         .select()
         .single();
 
       if (insertError) {
-        console.error('Error creating application:', insertError);
+        console.error('Detailed insert error:', insertError);
+        console.error('Error code:', insertError.code);
+        console.error('Error details:', insertError.details);
+        console.error('Error hint:', insertError.hint);
+        console.error('Error message:', insertError.message);
+        
         toast({
           title: "Submission failed",
-          description: "There was an error creating your application. Please try again.",
+          description: `Database error: ${insertError.message}. Please try again or contact support.`,
           variant: "destructive",
         });
         setIsSubmitting(false);
         return;
       }
+
+      console.log('Application created successfully:', applicationData);
 
       // Upload resume if provided using secure storage
       if (formData.resume) {
@@ -113,15 +142,12 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
           return;
         }
 
-        resumeUrl = uploadResult.url;
-        resumeFilename = uploadResult.filename;
-
         // Update application with resume information
         const { error: updateError } = await supabase
           .from('job_applications')
           .update({
-            resume_url: resumeUrl,
-            resume_filename: resumeFilename
+            resume_url: uploadResult.url,
+            resume_filename: uploadResult.filename
           })
           .eq('id', applicationData.id);
 
@@ -158,7 +184,7 @@ export const TeamApplicationForm = ({ isOpen, onClose }: TeamApplicationFormProp
       setCurrentStep(1);
       onClose();
     } catch (error) {
-      console.error('Unexpected error:', error);
+      console.error('Unexpected error during submission:', error);
       toast({
         title: "Submission failed",
         description: "An unexpected error occurred. Please try again later.",
